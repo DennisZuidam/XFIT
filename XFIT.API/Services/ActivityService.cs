@@ -35,11 +35,14 @@ namespace XFIT.Api.Services
 
         public async Task UpdateActivityAsync(Activity activityToBeUpdated, Activity activity)
         {
-            activityToBeUpdated.AthleteId = activity.AthleteId;
+            activityToBeUpdated.Athlete = activity.Athlete;
+            activityToBeUpdated.ActivityId = activity.ActivityId;
             activityToBeUpdated.Type = activity.Type;
+            activityToBeUpdated.Location = activity.Location;
             activityToBeUpdated.Name = activity.Name;
             activityToBeUpdated.Date = activity.Date;
             activityToBeUpdated.Distance = activity.Distance;
+            activityToBeUpdated.Pace = activity.Pace;
             activityToBeUpdated.Unit = activity.Unit;
             activityToBeUpdated.Duration = activity.Duration;
             activityToBeUpdated.Elev = activity.Elev;
@@ -50,7 +53,7 @@ namespace XFIT.Api.Services
             await _activityRepository.Update(activityToBeUpdated);
             await _activityRepository.SaveChangesAsync();
         }
-
+        
         public async Task DeleteActivityAsync(Activity activity)
         {
             await _activityRepository.Delete(activity);

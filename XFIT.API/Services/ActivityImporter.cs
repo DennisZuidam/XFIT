@@ -43,16 +43,19 @@ public class ActivityImporter : IActivityImporter
 
             Activity activity = new Activity
             {
-                AthleteId = int.Parse(values[0].Split('/').Last()),
+                Athlete = values[0],
+                ActivityId = values[1],
                 Type = values[2],
+                Location = values[3],
                 Name = values[4],
                 Date = DateTime.Parse(values[5]),
                 Distance = decimal.Parse(values[6]),
+                Pace = TimeSpan.Parse(values[7]),
                 Unit = values[8],
                 Duration = TimeSpan.Parse(values[9]),
-                Elev = decimal.TryParse(values[10], out decimal elev) ? elev : null,
-                Calo = decimal.TryParse(values[11], out decimal calo) ? calo : null,
-                EstPace = decimal.Parse(values[12]),
+                Elev = string.IsNullOrEmpty(values[10]) ? 0 : decimal.Parse(values[10]),
+                Calo = string.IsNullOrEmpty(values[11]) ? 0 : decimal.Parse(values[11]),
+                EstPace = TimeSpan.Parse(values[12]),
                 EstSpeed = decimal.Parse(values[13])
             };
 
@@ -61,4 +64,5 @@ public class ActivityImporter : IActivityImporter
 
         return activities;
     }
+
 }
