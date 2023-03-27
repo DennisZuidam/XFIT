@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using XFIT.Core.Entities;
@@ -38,16 +37,10 @@ public class ActivitiesController : ControllerBase
         return Ok(activity);
     }
 
-    [HttpPost]
-    public ActionResult<Activity> Post(Activity activity)
-    {
-        _activityService.AddActivityAsync(activity);
-        return CreatedAtAction(nameof(Get), new { id = activity.Id }, activity);
-    }
-    
     [HttpPost("import")]
-    public async Task<IActionResult> ImportActivities([FromBody] string path)
+    public async Task<IActionResult> ImportActivities()
     {
+        string path = "C:\\Users\\denni\\Downloads\\data-2023-3-22-21.csv";
         await _activityService.ImportActivitiesAsync(path);
         return Ok();
     }

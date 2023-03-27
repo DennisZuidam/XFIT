@@ -17,7 +17,7 @@ public class Activity
     public TimeSpan Duration { get; set; }
     public decimal Elev { get; set; }
     public decimal Calo { get; set; }
-    public TimeSpan EstPace { get; set; }
+    public string EstPace { get; set; }
     public decimal EstSpeed { get; set; }
 }
 

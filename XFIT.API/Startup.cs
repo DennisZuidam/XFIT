@@ -30,9 +30,9 @@ namespace XFIT.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "XFIT.API", Version = "v1" });
             });
+            
             services.AddDbContext<XfitDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("XFITDbConnection"), 
-                    b => b.MigrationsAssembly("XFIT.Infrastructure")));
+                options.UseSqlServer(Configuration.GetConnectionString("XFITDbConnection")));
 
             services.AddScoped<IActivityService, ActivityService>();
             services.AddScoped<IActivityRepository, ActivityRepository>();

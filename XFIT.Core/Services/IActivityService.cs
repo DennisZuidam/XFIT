@@ -8,7 +8,7 @@ namespace XFIT.Core.Services
     {
         Task<IEnumerable<Activity>> GetAllActivitiesAsync();
         Task<Activity> GetActivityById(int id);
-        Task AddActivityAsync(Activity newActivity);
+        void AddActivities(IEnumerable<Activity> activities);
         Task UpdateActivityAsync(Activity activityToBeUpdated, Activity activity);
         Task DeleteActivityAsync(Activity activity);
         Task ImportActivitiesAsync(string path);

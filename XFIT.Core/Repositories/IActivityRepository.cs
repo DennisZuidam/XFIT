@@ -8,7 +8,7 @@ public interface IActivityRepository
 {
     Task<IEnumerable<Activity>> GetAllAsync();
     Task<Activity> GetByIdAsync(int id);
-    Task Add(Activity activity);
+    void Add(IEnumerable<Activity> activities);
     Task Update(Activity activity);
     Task Delete(Activity activity);
     Task SaveChangesAsync();
