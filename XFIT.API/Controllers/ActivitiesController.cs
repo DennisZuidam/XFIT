@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using XFIT.Core.Entities;
 using XFIT.Core.Services;
 
@@ -11,10 +12,12 @@ namespace XFIT.API.Controllers;
 public class ActivitiesController : ControllerBase
 {
     private readonly IActivityService _activityService;
+    private readonly string _csvFilePath;
 
-    public ActivitiesController(IActivityService activityService)
+    public ActivitiesController(IActivityService activityService, IConfiguration config)
     {
         _activityService = activityService;
+        _csvFilePath = config["CsvFilePath"];
     }
 
     [HttpGet]
@@ -40,8 +43,7 @@ public class ActivitiesController : ControllerBase
     [HttpPost("import")]
     public async Task<IActionResult> ImportActivities()
     {
-        string path = "C:\\Users\\denni\\Downloads\\data-2023-3-29-14.csv";
-        await _activityService.ImportActivitiesAsync(path);
+        await _activityService.ImportActivitiesAsync(_csvFilePath);
         return Ok();
     }
 
