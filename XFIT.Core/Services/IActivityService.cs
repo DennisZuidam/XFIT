@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using XFIT.Core.Entities;
 
@@ -8,7 +9,7 @@ namespace XFIT.Core.Services
     {
         Task<IEnumerable<Activity>> GetAllActivitiesAsync();
         Task<Activity> GetActivityById(int id);
-        void AddActivities(IEnumerable<Activity> activities);
+        Task AddActivities(IEnumerable<Activity> activities);
         Task UpdateActivityAsync(Activity activityToBeUpdated, Activity activity);
         Task DeleteActivityAsync(Activity activity);
         Task ImportActivitiesAsync(string path);

@@ -32,11 +32,11 @@ namespace XFIT.API
             });
             
             services.AddDbContext<XfitDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("XFITDbConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("XFITDbConnection")), ServiceLifetime.Scoped);
 
             services.AddScoped<IActivityService, ActivityService>();
-            services.AddScoped<IActivityRepository, ActivityRepository>();
             services.AddScoped<IActivityImporter, ActivityImporter>();
+            services.AddScoped<IActivityRepository, ActivityRepository>();
             
             services.AddControllers();
         }

@@ -27,10 +27,9 @@ namespace XFIT.Api.Services
             return await _activityRepository.GetByIdAsync(id);
         }
 
-        public async void AddActivities(IEnumerable<Activity> activities)
+        public async Task AddActivities(IEnumerable<Activity> activities)
         {
-            _activityRepository.Add(activities);
-            //await _activityRepository.SaveChangesAsync();
+            await _activityRepository.AddAsync(activities);
         }
 
         public async Task UpdateActivityAsync(Activity activityToBeUpdated, Activity activity)
@@ -62,8 +61,9 @@ namespace XFIT.Api.Services
         
         public async Task ImportActivitiesAsync(string path)
         {
-            var activities = _activityImporter.Import(path);
+            var activities = _activityImporter.ImportAsync(path).Result;
             AddActivities(activities);
+            await _activityRepository.SaveChangesAsync();
         }
 
     }

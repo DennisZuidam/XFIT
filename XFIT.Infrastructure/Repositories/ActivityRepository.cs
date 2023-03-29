@@ -18,41 +18,29 @@ namespace XFIT.Infrastructure.Repositories
 
         public async Task<IEnumerable<Activity>> GetAllAsync()
         {
-            using (_dbContext)
-            {
-                return await _dbContext.Activities.ToListAsync();
-            }
+            return await _dbContext.Activities.ToListAsync();
         }
 
         public async Task<Activity> GetByIdAsync(int id)
         {
-            using (_dbContext)
-            {
-                return await _dbContext.Activities.FindAsync(id);
-            }
+            return await _dbContext.Activities.FindAsync(id);
         }
 
-        public void Add(IEnumerable<Activity> activities)
+        public async Task AddAsync(IEnumerable<Activity> activities)
         {
-            _dbContext.Activities.AddRange(activities);
+            await _dbContext.Activities.AddRangeAsync(activities);
         }
 
         public async Task Update(Activity activity)
         {
-            using (_dbContext)
-            {
-                _dbContext.Activities.Update(activity);
-                await _dbContext.SaveChangesAsync();
-            }
+            _dbContext.Activities.Update(activity);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task Delete(Activity activity)
         {
-            using (_dbContext)
-            {
-                _dbContext.Activities.Remove(activity);
-                await _dbContext.SaveChangesAsync();
-            }
+            _dbContext.Activities.Remove(activity);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task SaveChangesAsync()

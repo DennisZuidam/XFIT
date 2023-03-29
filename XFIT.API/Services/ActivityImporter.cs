@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using XFIT.Core.Entities;
 using XFIT.Core.Repositories;
 using XFIT.Core.Services;
@@ -18,12 +19,12 @@ public class ActivityImporter : IActivityImporter
         _activityRepository = activityRepository;
     }
 
-    public IEnumerable<Activity> Import(string filePath)
+    public async Task<IEnumerable<Activity>> ImportAsync(string filePath)
     {
         IEnumerable<Activity> activities = ReadCsvFile(filePath).ToList();
 
-        _activityRepository.Add(activities);
-        _activityRepository.SaveChangesAsync();
+        await _activityRepository.AddAsync(activities);
+        //_activityRepository.SaveChangesAsync();
         return activities;
     }
 
