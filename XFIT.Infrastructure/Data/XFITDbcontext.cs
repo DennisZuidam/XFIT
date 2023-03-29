@@ -15,6 +15,22 @@ namespace XFIT.Infrastructure.Data
         {
             modelBuilder.Entity<Activity>()
                 .HasKey(a => a.Id);
+            
+            modelBuilder.Entity<Activity>()
+                .Property(a => a.Calo)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Activity>()
+                .Property(a => a.Distance)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Activity>()
+                .Property(a => a.Elev)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Activity>()
+                .Property(a => a.EstSpeed)
+                .HasColumnType("decimal(18,2)");
         }
     }
 }
