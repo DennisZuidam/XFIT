@@ -24,7 +24,6 @@ public class ActivityImporter : IActivityImporter
         IEnumerable<Activity> activities = ReadCsvFile(filePath).ToList();
 
         await _activityRepository.AddAsync(activities);
-        //_activityRepository.SaveChangesAsync();
         return activities;
     }
 

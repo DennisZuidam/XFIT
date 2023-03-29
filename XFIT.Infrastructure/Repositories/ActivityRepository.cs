@@ -28,7 +28,14 @@ namespace XFIT.Infrastructure.Repositories
 
         public async Task AddAsync(IEnumerable<Activity> activities)
         {
-            await _dbContext.Activities.AddRangeAsync(activities);
+            foreach (var activity in activities)
+            {
+                var existingActivity = await _dbContext.Activities.SingleOrDefaultAsync(a => a.ActivityId == activity.ActivityId);
+                if (existingActivity == null)
+                {
+                    await _dbContext.Activities.AddAsync(activity);
+                }
+            }
         }
 
         public async Task Update(Activity activity)
