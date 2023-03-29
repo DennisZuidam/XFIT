@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using XFIT.Core.Entities;
@@ -26,6 +27,7 @@ namespace XFIT.Infrastructure.Repositories
             return await _dbContext.Activities.FindAsync(id);
         }
 
+        [SuppressMessage("ReSharper.DPA", "DPA0006: Large number of DB commands")]
         public async Task AddAsync(IEnumerable<Activity> activities)
         {
             foreach (var activity in activities)
@@ -36,6 +38,8 @@ namespace XFIT.Infrastructure.Repositories
                     await _dbContext.Activities.AddAsync(activity);
                 }
             }
+
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task Update(Activity activity)

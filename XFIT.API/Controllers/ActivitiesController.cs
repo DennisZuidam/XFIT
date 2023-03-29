@@ -40,7 +40,7 @@ public class ActivitiesController : ControllerBase
     [HttpPost("import")]
     public async Task<IActionResult> ImportActivities()
     {
-        string path = "C:\\Users\\denni\\Downloads\\data-2023-3-22-21.csv";
+        string path = "C:\\Users\\denni\\Downloads\\data-2023-3-29-14.csv";
         await _activityService.ImportActivitiesAsync(path);
         return Ok();
     }

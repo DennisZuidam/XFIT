@@ -62,8 +62,7 @@ namespace XFIT.Api.Services
         public async Task ImportActivitiesAsync(string path)
         {
             var activities = _activityImporter.ImportAsync(path).Result;
-            AddActivities(activities);
-            await _activityRepository.SaveChangesAsync();
+            await AddActivities(activities);
         }
 
     }
